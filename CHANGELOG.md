@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.1](https://github.com/stordco/actions-sync/compare/v1.0.0...v1.0.1) (2023-05-09)
+
+
+### Bug Fixes
+
+* override new release tag with built files ([f4a54f9](https://github.com/stordco/actions-sync/commit/f4a54f9c42eb0d3b4e9e0ce6b27d41d7af7e26d5))
+* update sync-token to sync-auth in action.yml ([3e63e07](https://github.com/stordco/actions-sync/commit/3e63e07bd38374d99d5bfd870b9c8a23b917b46c))
+
 ## 1.0.0 (2023-05-09)
 
 
