@@ -1,0 +1,76 @@
+---
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  please:
+    name: Please
+    runs-on: ubuntu-latest
+
+    steps:
+      - id: release
+        name: Release
+        uses: google-github-actions/release-please-action@v3
+        with:
+          release-type: node
+          package-name: "@stordco/actions-sync"
+          token: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
+          extra-files: README.md
+
+      - if: steps.release.outputs.release_created
+        name: Checkout
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ steps.release.outputs.tag_name }}
+          token: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
+          persist-credentials: true
+
+      - if: steps.release.outputs.release_created
+        name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: npm
+
+      - if: steps.release.outputs.release_created
+        id: cache
+        name: Cache node_modules
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-16-nodemodules-${{ hashFiles('package-lock.json') }}
+
+      - if: steps.release.outputs.release_created && steps.cache.outputs.cache-hit != 'true'
+        name: Install Dependencies
+        run: npm ci
+
+      - if: steps.release.outputs.release_created
+        name: Build
+        run: npm run build
+
+      - if: steps.release.outputs.release_created
+        name: Tag
+        run: |
+          git config user.name stord-engineering-account
+          git config user.email engineering@stord.com
+
+          git add -f dist
+          git commit --amend --no-edit
+
+          git tag -d v${{ steps.release.outputs.major }} || true
+          git tag -d v${{ steps.release.outputs.major }}.${{ steps.release.outputs.minor }} || true
+          git tag -d ${{ steps.release.outputs.tag_name }} || true
+          git push origin :v${{ steps.release.outputs.major }} || true
+          git push origin :v${{ steps.release.outputs.major }}.${{ steps.release.outputs.minor }} || true
+          git push origin :${{ steps.release.outputs.tag_name }} || true
+
+          git tag -a v${{ steps.release.outputs.major }} -m "chore(main): release ${{ steps.release.outputs.major }}"
+          git tag -a v${{ steps.release.outputs.major }}.${{ steps.release.outputs.minor }} -m "chore(main): release  v${{ steps.release.outputs.major }}.${{ steps.release.outputs.minor }}"
+          git tag -a ${{ steps.release.outputs.tag_name }} -m "chore(main): release  ${{ steps.release.outputs.tag_name }}"
+          git push origin v${{ steps.release.outputs.major }}
+          git push origin v${{ steps.release.outputs.major }}.${{ steps.release.outputs.minor }}
+          git push origin ${{ steps.release.outputs.tag_name }}
