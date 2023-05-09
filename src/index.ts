@@ -1,6 +1,11 @@
 import * as core from "@actions/core";
 
-import { configureRepository, cloneRepository, commitChanges, createPr } from "./git";
+import {
+  configureRepository,
+  cloneRepository,
+  commitChanges,
+  createPr,
+} from "./git";
 import { getConfig } from "./config";
 import { templateFiles } from "./templates";
 import { runScripts } from "./scripts";

@@ -37,12 +37,16 @@ export async function configureRepository(config: Config): Promise<void> {
 }
 
 export async function commitChanges(config: Config): Promise<boolean> {
-  const exitCode = await exec("git", ["commit", "--all", "-m", config.commitMessage], {
-    cwd: config.fullPath,
-    failOnStdErr: false,
-    ignoreReturnCode: true,
-    silent: !core.isDebug(),
-  });
+  const exitCode = await exec(
+    "git",
+    ["commit", "--all", "-m", config.commitMessage],
+    {
+      cwd: config.fullPath,
+      failOnStdErr: false,
+      ignoreReturnCode: true,
+      silent: !core.isDebug(),
+    }
+  );
 
   return exitCode === 0;
 }
@@ -63,36 +67,48 @@ export async function createPr(config: Config): Promise<void> {
 
   for (const name of config.prLabels) {
     core.debug(`Creating issue label ${name}`);
-    await octokit.rest.issues.createLabel({ owner, repo, name });
+    try {
+      await octokit.rest.issues.createLabel({ owner, repo, name });
+    } catch (err) {
+      if ((err as any).code === "already_exists") {
+        core.debug(`Issue label ${name} already exists`);
+      } else {
+        throw err;
+      }
+    }
   }
 
-  const res = await octokit.rest.pulls.create({
-    owner,
-    repo,
-    base: repository.default_branch,
-    body: config.prBody,
-    head: config.commitBranch,
-    maintainer_can_modify: true,
-    title: config.prTitle,
-  });
+  try {
+    const res = await octokit.rest.pulls.create({
+      owner,
+      repo,
+      base: repository.default_branch,
+      body: config.prBody,
+      head: config.commitBranch,
+      maintainer_can_modify: true,
+      title: config.prTitle,
+    });
 
-  if (res.status !== 201) {
-    throw new Error(`Failed to create PR: ${res.status}`);
+    await octokit.rest.issues.addLabels({
+      owner,
+      repo,
+      issue_number: res.data.number,
+      labels: config.prLabels,
+    });
+
+    await octokit.rest.pulls.requestReviewers({
+      owner,
+      repo,
+      pull_number: res.data.number,
+      reviewers: config.prReviewUsers,
+    });
+
+    core.setOutput("pr-url", res.data.html_url);
+  } catch (err) {
+    if ((err as any).code === "already_exists") {
+      core.debug("PR already exists");
+    } else {
+      throw err;
+    }
   }
-
-  await octokit.rest.issues.addLabels({
-    owner,
-    repo,
-    issue_number: res.data.number,
-    labels: config.prLabels,
-  });
-
-  await octokit.rest.pulls.requestReviewers({
-    owner,
-    repo,
-    pull_number: res.data.number,
-    reviewers: config.prReviewUsers,
-  });
-
-  core.setOutput("pr-url", res.data.html_url);
 }
