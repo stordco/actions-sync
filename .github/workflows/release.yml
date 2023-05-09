@@ -63,14 +63,14 @@ jobs:
 
           git tag -d v${{ steps.release.outputs.major }} || true
           git tag -d v${{ steps.release.outputs.major }}.${{ steps.release.outputs.minor }} || true
-          git tag -d ${{ steps.release.outputs.tag_name }} || true
+          git tag -d latest || true
           git push origin :v${{ steps.release.outputs.major }} || true
           git push origin :v${{ steps.release.outputs.major }}.${{ steps.release.outputs.minor }} || true
-          git push origin :${{ steps.release.outputs.tag_name }} || true
+          git push origin :latest || true
 
           git tag -a v${{ steps.release.outputs.major }} -m "chore(main): release ${{ steps.release.outputs.major }}"
           git tag -a v${{ steps.release.outputs.major }}.${{ steps.release.outputs.minor }} -m "chore(main): release  v${{ steps.release.outputs.major }}.${{ steps.release.outputs.minor }}"
-          git tag -a ${{ steps.release.outputs.tag_name }} -m "chore(main): release  ${{ steps.release.outputs.tag_name }}"
+          git tag -a latest -m "chore(main): release  ${{ steps.release.outputs.tag_name }}"
           git push origin v${{ steps.release.outputs.major }}
           git push origin v${{ steps.release.outputs.major }}.${{ steps.release.outputs.minor }}
-          git push origin ${{ steps.release.outputs.tag_name }}
+          git push origin latest
