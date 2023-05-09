@@ -16,12 +16,10 @@ jobs:
         name: Release
         uses: google-github-actions/release-please-action@v3
         with:
-          command: github-release
-          extra-files: README.md
           release-type: node
           package-name: "@stordco/actions-sync"
           token: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
-          prerelease: false
+          extra-files: README.md
 
       - if: steps.release.outputs.release_created
         name: Checkout
