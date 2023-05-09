@@ -2,6 +2,7 @@ import { ok } from "assert";
 import * as core from "@actions/core";
 import { exec } from "@actions/exec";
 import { getOctokit } from "@actions/github";
+import { RequestError } from '@octokit/request-error';
 import { mkdirP } from "@actions/io";
 
 import { Config } from "./config";
@@ -70,7 +71,7 @@ export async function createPr(config: Config): Promise<void> {
     try {
       await octokit.rest.issues.createLabel({ owner, repo, name });
     } catch (err) {
-      if ((err as any).code === "already_exists") {
+      if (err instanceof RequestError && err.status === 422) {
         core.debug(`Issue label ${name} already exists`);
       } else {
         throw err;
@@ -105,7 +106,7 @@ export async function createPr(config: Config): Promise<void> {
 
     core.setOutput("pr-url", res.data.html_url);
   } catch (err) {
-    if ((err as any).code === "already_exists") {
+    if (err instanceof RequestError && err.status === 422) {
       core.debug("PR already exists");
     } else {
       throw err;
