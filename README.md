@@ -29,6 +29,10 @@ You will then be able to use the variable in other scripts and templates.
 echo $MY_KEY
 ```
 
+## Templates
+
+All files in your `templates/` directory will be rendered with [Handlebars](https://handlebarsjs.com/) and placed in your repository. Handlebars will have access to any template key that was saved in the scripts step above.
+
 ## Alternatives
 
 There are many other git sync type actions currently on GitHub, however most of them only handle static files. This action was created where some files are dynamic and should be templated or scripted before synced.
