@@ -1,0 +1,80 @@
+name: actions-sync
+description: Sync GitHub repositories via templates and scripts
+author: Stord
+
+branding:
+  icon: git-branch
+  color: gray-dark
+
+inputs:
+  commit-branch:
+    description: The branch to commit changes to
+    required: false
+    type: string
+    default: gha/actions-sync
+  commit-message:
+    description: The commit message to use when committing changes
+    required: false
+    type: string
+    default: "chore: sync files"
+  commit-user-email:
+    description: The email address to use when committing changes
+    required: false
+    type: string
+    default: 41898282+github-actions[bot]@users.noreply.github.com
+  commit-user-name:
+    description: The name to use when committing changes
+    required: false
+    type: string
+    default: github-actions[bot]
+  dry-run:
+    description: Run everything but do not push changes
+    required: false
+    type: boolean
+    default: false
+  path:
+    description: Relative path under $GITHUB_WORKSPACE where the repository to be synced is located
+    required: false
+    type: string
+  pr-assignee:
+    description: User to assign to the newly created pull request
+    required: false
+    type: string
+  pr-body:
+    description: The body of the pull request to create
+    required: false
+    type: string
+  pr-labels:
+    description: The labels to apply to the newly created pull request
+    required: false
+    type: string
+  pr-reviewers:
+    description: Users to assign to review the newly created pull request
+    required: false
+    type: string
+  pr-title:
+    description: The title of the pull request to create
+    required: false
+    type: string
+    default: "chore: sync files"
+  sync-token:
+    description: HTTP auth url string for cloning the sync repository
+    required: false
+    type: string
+  sync-branch:
+    description: The repository branch to sync from
+    required: false
+    type: string
+    default: main
+  sync-repository:
+    description: The repository to sync from
+    required: true
+    type: string
+
+outputs:
+  pull_request_url:
+    description: The URL of the pull request that was created, if any
+
+runs:
+  using: node16
+  main: dist/index.js
