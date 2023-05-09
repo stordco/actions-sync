@@ -1,6 +1,6 @@
-import core from "@actions/core";
+import * as core from "@actions/core";
 import { exec } from "@actions/exec";
-import glob from "@actions/glob";
+import * as glob from "@actions/glob";
 import { relative } from "path";
 import { open, readFile, utimes } from "fs/promises";
 

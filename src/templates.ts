@@ -1,5 +1,5 @@
-import core from "@actions/core";
-import glob from "@actions/glob";
+import * as core from "@actions/core";
+import * as glob from "@actions/glob";
 import { open, readFile, writeFile } from "fs/promises";
 import Handlebars from "handlebars";
 import { join, relative } from "path";

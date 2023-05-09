@@ -1,7 +1,7 @@
 import { ok } from "assert";
-import core from "@actions/core";
+import * as core from "@actions/core";
 import { exec } from "@actions/exec";
-import github from "@actions/github";
+import { getOctokit } from "@actions/github";
 import { mkdirP } from "@actions/io";
 
 import { Config } from "./config";
@@ -51,7 +51,7 @@ export async function createPr(config: Config): Promise<void> {
   ok(config.prToken, "Expected PR_TOKEN to be defined");
 
   const [owner, repo] = process.env.GITHUB_REPOSITORY.split("/");
-  const octokit = github.getOctokit(config.prToken);
+  const octokit = getOctokit(config.prToken);
 
   const { data: repository } = await octokit.rest.repos.get({ owner, repo });
 

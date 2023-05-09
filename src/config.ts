@@ -1,5 +1,5 @@
 import { ok } from "assert";
-import core from "@actions/core";
+import * as core from "@actions/core";
 import { join } from "path";
 
 import { createTempPath } from "./utility";
