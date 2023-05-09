@@ -57,7 +57,7 @@ inputs:
     description: GitHub token used for creating the pull request
     required: false
     type: string
-  sync-token:
+  sync-auth:
     description: HTTP auth url string for cloning the sync repository
     required: false
     type: string
