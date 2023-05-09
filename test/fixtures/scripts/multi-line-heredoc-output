@@ -1,0 +1,10 @@
+keyone=<<VALUEONETEST
+testing line one
+testing line two
+VALUEONETEST
+key_two=<<VALUETWOTEST
+testing line one
+"testing line two"
+extra empty line after this
+
+VALUETWOTEST
