@@ -24,11 +24,10 @@ export async function templateFiles(config: Config): Promise<void> {
       const templateHandlebar = Handlebars.compile(templateData);
       const fileData = templateHandlebar(config.templateVariables);
 
-      core.debug(`Template ${relativePath}:\n${fileData}`);
+      core.debug(fileData);
 
-      core.debug(`Writing ${relativePath}`);
       const writePath = join(config.fullPath, relativePath);
-      core.debug(`Write path: ${writePath}`);
+      core.debug(`Writing: ${writePath}`);
 
       await mkdirP(dirname(writePath));
       const io = await open(writePath, "a");

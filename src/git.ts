@@ -19,7 +19,7 @@ export async function cloneRepository(config: Config): Promise<void> {
   );
 }
 
-export async function commitChanges(config: Config): Promise<boolean> {
+export async function configureRepository(config: Config): Promise<void> {
   await exec("git", ["config", "user.email", config.commitUserEmail], {
     cwd: config.fullPath,
     silent: !core.isDebug(),
@@ -34,15 +34,10 @@ export async function commitChanges(config: Config): Promise<boolean> {
     cwd: config.fullPath,
     silent: !core.isDebug(),
   });
+}
 
-  await exec("git", ["add", "."], {
-    cwd: config.fullPath,
-    failOnStdErr: false,
-    ignoreReturnCode: true,
-    silent: !core.isDebug(),
-  });
-
-  const exitCode = await exec("git", ["commit", "-m", config.commitMessage], {
+export async function commitChanges(config: Config): Promise<boolean> {
+  const exitCode = await exec("git", ["commit", "--all", "-m", config.commitMessage], {
     cwd: config.fullPath,
     failOnStdErr: false,
     ignoreReturnCode: true,

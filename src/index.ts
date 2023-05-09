@@ -1,6 +1,6 @@
 import * as core from "@actions/core";
 
-import { cloneRepository, commitChanges, createPr } from "./git";
+import { configureRepository, cloneRepository, commitChanges, createPr } from "./git";
 import { getConfig } from "./config";
 import { templateFiles } from "./templates";
 import { runScripts } from "./scripts";
@@ -8,6 +8,7 @@ import { runScripts } from "./scripts";
 export async function run() {
   const config = getConfig();
 
+  await configureRepository(config);
   await cloneRepository(config);
   await runScripts(config);
   await templateFiles(config);
