@@ -58,7 +58,7 @@ jobs:
           git config user.email engineering@stord.com
 
           git add -f dist
-          git commit -m "chore: build ${{ steps.release.outputs.tag_name }}"
+          git commit --amend --no-edit
 
           git tag -d v${{ steps.release.outputs.major }} || true
           git tag -d v${{ steps.release.outputs.major }}.${{ steps.release.outputs.minor }} || true
