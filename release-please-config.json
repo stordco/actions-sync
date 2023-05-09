@@ -1,0 +1,10 @@
+{
+  "separate-pull-requests": false,
+  "draft-pull-request": true,
+  "packages": {
+    ".": {}
+  },
+  "extra-files": [
+    "README.md"
+  ]
+}
