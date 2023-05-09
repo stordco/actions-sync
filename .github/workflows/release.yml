@@ -22,7 +22,7 @@ jobs:
           extra-files: |
             README.md
 
-      - if: ${{ steps.release.outputs.release_created }}
+      - if: steps.release.outputs.release_created
         name: Checkout
         uses: actions/checkout@v3
         with:
@@ -30,11 +30,37 @@ jobs:
           token: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
           persist-credentials: true
 
-      - if: ${{ steps.release.outputs.release_created }}
+      - if: steps.release.outputs.release_created
+        name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: npm
+
+      - if: steps.release.outputs.release_created
+        id: cache
+        name: Cache node_modules
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-16-nodemodules-${{ hashFiles('package-lock.json') }}
+
+      - if: steps.release.outputs.release_created && steps.cache.outputs.cache-hit != 'true'
+        name: Install Dependencies
+        run: npm ci
+
+      - if: steps.release.outputs.release_created
+        name: Build
+        run: npm run build
+
+      - if: steps.release.outputs.release_created
         name: Tag
         run: |
           git config user.name stord-engineering-account
           git config user.email engineering@stord.com
+
+          git add -f dist
+          git commit -m "chore: build ${{ steps.release.outputs.tag_name }}"
 
           git tag -d v${{ steps.release.outputs.major }} || true
           git tag -d v${{ steps.release.outputs.major }}.${{ steps.release.outputs.minor }} || true
