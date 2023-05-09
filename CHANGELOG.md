@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.1](https://github.com/stordco/actions-sync/compare/v1.6.0...v1.6.1) (2023-05-09)
+
+
+### Bug Fixes
+
+* import octokit RequestError instance ([2bc9ef1](https://github.com/stordco/actions-sync/commit/2bc9ef1510bce42ede65d8b28beae6e3e00a8578))
+
 ## [1.6.0](https://github.com/stordco/actions-sync/compare/v1.5.0...v1.6.0) (2023-05-09)
 
 
