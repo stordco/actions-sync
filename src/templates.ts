@@ -2,12 +2,15 @@ import * as core from "@actions/core";
 import * as glob from "@actions/glob";
 import { open, readFile, writeFile } from "fs/promises";
 import Handlebars from "handlebars";
-import { join, relative } from "path";
+import { dirname, join, relative } from "path";
+import { mkdirP } from "@actions/io";
 
 import { Config } from "./config";
 
 export async function templateFiles(config: Config): Promise<void> {
-  const templateGlob = await glob.create(`${config.syncPath}/templates/*`);
+  const templateGlob = await glob.create(`${config.syncPath}/templates/*`, {
+    matchDirectories: false,
+  });
   const templatePaths = await templateGlob.glob();
 
   core.info(`Templating ${templatePaths.length} files...`);
@@ -27,6 +30,7 @@ export async function templateFiles(config: Config): Promise<void> {
       const writePath = join(config.fullPath, relativePath);
       core.debug(`Write path: ${writePath}`);
 
+      await mkdirP(dirname(writePath));
       const io = await open(writePath, "a");
       await io.close();
       await writeFile(writePath, fileData);

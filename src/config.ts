@@ -40,7 +40,9 @@ export function getConfig(): Config {
     prBody: core.getInput("pr-body", { required: false }),
     prEnabled: core.getBooleanInput("pr-enabled", { required: true }),
     prLabels: core.getMultilineInput("pr-labels", { required: false }),
-    prReviewUsers: core.getMultilineInput("pr-review-users", { required: false }),
+    prReviewUsers: core.getMultilineInput("pr-review-users", {
+      required: false,
+    }),
     prTitle: core.getInput("pr-title", { required: true }),
     prToken: core.getInput("pr-token", { required: false }),
     syncAuth: core.getInput("sync-auth", { required: false }),
