@@ -2,7 +2,7 @@ import core from "@actions/core";
 import { exec } from "@actions/exec";
 import glob from "@actions/glob";
 import { relative } from "path";
-import { readFile, utimes } from "fs/promises";
+import { open, readFile, utimes } from "fs/promises";
 
 import { Config } from "./config";
 import { createTempPath } from "./utility";
@@ -40,7 +40,8 @@ export async function runScript(
   config: Config
 ): Promise<Record<string, string>> {
   const outputFilePath = createTempPath();
-  await utimes(outputFilePath, new Date(), new Date());
+  const io = await open(outputFilePath, "a");
+  await io.close();
 
   await exec(scriptPath, [], {
     cwd: config.fullPath,
