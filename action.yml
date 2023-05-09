@@ -27,28 +27,24 @@ inputs:
     required: false
     type: string
     default: github-actions[bot]
-  dry-run:
-    description: Run everything but do not push changes
-    required: false
-    type: boolean
-    default: false
   path:
     description: Relative path under $GITHUB_WORKSPACE where the repository to be synced is located
-    required: false
-    type: string
-  pr-assignee:
-    description: User to assign to the newly created pull request
     required: false
     type: string
   pr-body:
     description: The body of the pull request to create
     required: false
     type: string
+  pr-enabled:
+    description: Whether to create a pull request on changes
+    required: false
+    type: boolean
+    default: true
   pr-labels:
     description: The labels to apply to the newly created pull request
     required: false
     type: string
-  pr-reviewers:
+  pr-review-users:
     description: Users to assign to review the newly created pull request
     required: false
     type: string
@@ -57,6 +53,10 @@ inputs:
     required: false
     type: string
     default: "chore: sync files"
+  pr-token:
+    description: GitHub token used for creating the pull request
+    required: false
+    type: string
   sync-token:
     description: HTTP auth url string for cloning the sync repository
     required: false

@@ -1,7 +1,7 @@
 import core from "@actions/core";
 import github from "@actions/github";
 
-import { cloneRepository } from "./git";
+import { cloneRepository, commitChanges, createPr } from "./git";
 import { getConfig } from "./config";
 import { templateFiles } from "./templates";
 import { runScripts } from "./scripts";
@@ -13,7 +13,16 @@ export async function run() {
   await runScripts(config);
   await templateFiles(config);
 
-  // Commit and push changes to sync repository
+  if (config.prEnabled) {
+    const hasChanges = await commitChanges(config);
 
-  // Create PR
+    if (hasChanges === false) {
+      core.info("No changes to commit.");
+      return;
+    }
+
+    core.info("Creating PR");
+    await createPr(config);
+    core.info("Created PR");
+  }
 }

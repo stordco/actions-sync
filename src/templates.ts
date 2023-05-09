@@ -1,6 +1,8 @@
 import core from "@actions/core";
 import glob from "@actions/glob";
-import { relative } from "path";
+import { open, readFile, writeFile } from "fs/promises";
+import Handlebars from "handlebars";
+import { join, relative } from "path";
 
 import { Config } from "./config";
 
@@ -11,8 +13,27 @@ export async function templateFiles(config: Config): Promise<void> {
   core.info(`Templating ${templatePaths.length} files...`);
 
   for (const templatePath of templatePaths) {
-    core.info(`Template ${relative(config.syncPath, templatePath)}`);
+    const relativePath = relative(`${config.syncPath}/templates`, templatePath);
+    core.info(`Template ${relativePath}`);
 
-    // Template the file
+    try {
+      const templateData = await readFile(templatePath, "utf8");
+      const templateHandlebar = Handlebars.compile(templateData);
+      const fileData = templateHandlebar(config.templateVariables);
+
+      core.debug(`Template ${relativePath}:\n${fileData}`);
+
+      core.debug(`Writing ${relativePath}`);
+      const writePath = join(config.fullPath, relativePath);
+      core.debug(`Write path: ${writePath}`);
+
+      const io = await open(writePath, "a");
+      await io.close();
+      await writeFile(writePath, fileData);
+
+      core.debug("File written.");
+    } catch (err) {
+      core.error(`Error templating ${relativePath}: ${err}`);
+    }
   }
 }
