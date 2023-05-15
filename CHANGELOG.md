@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.2](https://github.com/stordco/actions-sync/compare/v1.6.1...v1.6.2) (2023-05-15)
+
+
+### Bug Fixes
+
+* git commit new files ([29b9ca9](https://github.com/stordco/actions-sync/commit/29b9ca9502ee41226b11c2e883fdf85bc2e34e9a))
+
 ## [1.6.1](https://github.com/stordco/actions-sync/compare/v1.6.0...v1.6.1) (2023-05-09)
 
 
