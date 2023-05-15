@@ -38,9 +38,20 @@ export async function configureRepository(config: Config): Promise<void> {
 }
 
 export async function commitChanges(config: Config): Promise<boolean> {
+  await exec(
+    "git",
+    ["add", "-A"],
+    {
+      cwd: config.fullPath,
+      failOnStdErr: false,
+      ignoreReturnCode: true,
+      silent: !core.isDebug(),
+    }
+  );
+
   const exitCode = await exec(
     "git",
-    ["commit", "--all", "-m", config.commitMessage],
+    ["commit", "-m", config.commitMessage],
     {
       cwd: config.fullPath,
       failOnStdErr: false,
