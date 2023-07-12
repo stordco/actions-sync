@@ -46,7 +46,7 @@ describe.concurrent("templates", () => {
     const data = await readFile(path, "utf8");
 
     expect(data).toEqual(
-      `{\n  "keyOne": true,\n  "keyThree": "valueThree"\n}\n`
+      `{\n  "keyOne": true,\n  "keyThree": "valueThree"\n}\n`,
     );
   });
 
@@ -59,7 +59,7 @@ describe.concurrent("templates", () => {
     const data = await readFile(path, "utf8");
 
     expect(data).toEqual(
-      `{\n  "keyOne": true,\n  "keyTwo": "valueTwo",\n  "keyThree": "valueThree"\n}\n`
+      `{\n  "keyOne": true,\n  "keyTwo": "valueTwo",\n  "keyThree": "valueThree"\n}\n`,
     );
   });
 });

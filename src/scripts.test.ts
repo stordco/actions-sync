@@ -7,7 +7,7 @@ describe.concurrent("scripts", () => {
   it("parses single line output", async () => {
     const fixturePath = resolve(
       __dirname,
-      "../test/fixtures/scripts/single-line-output"
+      "../test/fixtures/scripts/single-line-output",
     );
     const output = await readOutput(fixturePath);
     expect(output).toEqual({
@@ -20,7 +20,7 @@ describe.concurrent("scripts", () => {
   it("parses quoted string output", async () => {
     const fixturePath = resolve(
       __dirname,
-      "../test/fixtures/scripts/single-line-quoted-string-output"
+      "../test/fixtures/scripts/single-line-quoted-string-output",
     );
     const output = await readOutput(fixturePath);
     expect(output).toEqual({
@@ -34,7 +34,7 @@ describe.concurrent("scripts", () => {
     // NOTE: This trims whitespace due to how we parse and the ugly regex. Should be fine for our use case.
     const fixturePath = resolve(
       __dirname,
-      "../test/fixtures/scripts/multi-line-heredoc-output"
+      "../test/fixtures/scripts/multi-line-heredoc-output",
     );
     const output = await readOutput(fixturePath);
     expect(output).toEqual({

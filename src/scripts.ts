@@ -24,7 +24,7 @@ export async function runScripts(config: Config): Promise<void> {
     const newTemplateVariables = await runScript(scriptPath, config);
     core.debug(
       "Adding new template variables\n" +
-        JSON.stringify(newTemplateVariables, null, 2)
+        JSON.stringify(newTemplateVariables, null, 2),
     );
     config.templateVariables = {
       ...config.templateVariables,
@@ -37,7 +37,7 @@ export async function runScripts(config: Config): Promise<void> {
 
 export async function runScript(
   scriptPath: string,
-  config: Config
+  config: Config,
 ): Promise<Record<string, string>> {
   const outputFilePath = createTempPath();
   const io = await open(outputFilePath, "a");
@@ -65,7 +65,7 @@ export async function runScript(
 
 // Most of the code taken from dotenv and adapted for heredocs to match GitHub Actions output
 export async function readOutput(
-  path: string
+  path: string,
 ): Promise<Record<string, string>> {
   const result = {} as Record<string, string>;
 
