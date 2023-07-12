@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.7.0](https://github.com/stordco/actions-sync/compare/v1.6.2...v1.7.0) (2023-07-12)
+
+
+### Features
+
+* retry and throttle GitHub requests ([#14](https://github.com/stordco/actions-sync/issues/14)) ([a1a17bd](https://github.com/stordco/actions-sync/commit/a1a17bdf4d95d4b0cd0b86202ea3acabb08d7db2))
+
 ## [1.6.2](https://github.com/stordco/actions-sync/compare/v1.6.1...v1.6.2) (2023-05-15)
 
 
