@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.7.1](https://github.com/stordco/actions-sync/compare/v1.7.0...v1.7.1) (2023-07-13)
+
+
+### Bug Fixes
+
+* set onSecondaryRateLimit and onRateLimit options ([#16](https://github.com/stordco/actions-sync/issues/16)) ([3d9d6b8](https://github.com/stordco/actions-sync/commit/3d9d6b8dd841d424b829e7536dbce0049d822c53))
+
 ## [1.7.0](https://github.com/stordco/actions-sync/compare/v1.6.2...v1.7.0) (2023-07-12)
 
 
