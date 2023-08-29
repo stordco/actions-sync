@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.8.1](https://github.com/stordco/actions-sync/compare/v1.8.0...v1.8.1) (2023-08-29)
+
+
+### Bug Fixes
+
+* update scripting logic with new sync tree variable ([d0184ce](https://github.com/stordco/actions-sync/commit/d0184ceddfee8ae578e7654d3bbcf5bf1223caa4))
+
 ## [1.8.0](https://github.com/stordco/actions-sync/compare/v1.7.1...v1.8.0) (2023-08-29)
 
 
