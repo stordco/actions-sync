@@ -8,16 +8,22 @@ import { Config } from "./config";
 import { getOctokit } from "./octokit";
 
 export async function cloneRepository(config: Config): Promise<void> {
-  const { syncAuth, syncPath, syncRepository, syncBranch } = config;
+  const { syncAuth, syncPath, syncRepository, syncTree } = config;
 
   const tempDirectory = await mkdirP(syncPath);
+
   await exec(
-    `git clone https://${syncAuth}@${syncRepository} --branch ${syncBranch} ${syncPath}`,
+    `git clone https://${syncAuth}@${syncRepository} ${syncPath}`,
     [],
     {
       silent: !core.isDebug(),
     },
   );
+
+  await exec(`git checkout --detach ${syncTree}`, [], {
+    cwd: syncPath,
+    silent: !core.isDebug(),
+  });
 }
 
 export async function configureRepository(config: Config): Promise<void> {
