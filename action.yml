@@ -62,14 +62,19 @@ inputs:
     required: false
     type: string
   sync-branch:
+    deprecationMessage: sync-branch has been replaced with sync-tree and now allows git shas.
     description: The repository branch to sync from
     required: false
     type: string
-    default: main
   sync-repository:
     description: The repository to sync from
     required: true
     type: string
+  sync-tree:
+    description: The repository branch or sha to sync from
+    required: false
+    type: string
+    default: main
 
 outputs:
   pull_request_url:
