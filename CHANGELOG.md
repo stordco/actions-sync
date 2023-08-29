@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.8.3](https://github.com/stordco/actions-sync/compare/v1.8.2...v1.8.3) (2023-08-29)
+
+
+### Bug Fixes
+
+* git fetch before checkout ([b797bff](https://github.com/stordco/actions-sync/commit/b797bff85eac0997aff4576ba4d5550656a452b4))
+
 ## [1.8.2](https://github.com/stordco/actions-sync/compare/v1.8.1...v1.8.2) (2023-08-29)
 
 
