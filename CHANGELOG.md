@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.8.2](https://github.com/stordco/actions-sync/compare/v1.8.1...v1.8.2) (2023-08-29)
+
+
+### Bug Fixes
+
+* loosely compare deprecated sync-branch input ([fca1906](https://github.com/stordco/actions-sync/commit/fca190618fb2e4814c76ce4d212572c8e6538740))
+
 ## [1.8.1](https://github.com/stordco/actions-sync/compare/v1.8.0...v1.8.1) (2023-08-29)
 
 
