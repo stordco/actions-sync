@@ -48,9 +48,10 @@ export async function runScript(
     env: {
       ...process.env,
       ...config.templateVariables,
-      SYNC_BRANCH: config.syncBranch,
+      SYNC_BRANCH: config.syncTree,
       SYNC_PATH: config.syncPath,
       SYNC_REPOSITORY: config.syncRepository,
+      SYNC_TREE: config.syncTree,
       TEMPLATE_ENV: outputFilePath,
     },
     silent: false,

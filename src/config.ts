@@ -21,7 +21,7 @@ export type Config = {
   syncAuth?: string;
   syncPath: string;
   syncRepository: string;
-  syncTree?: string;
+  syncTree: string;
   templateVariables: Record<string, string>;
 };
 
