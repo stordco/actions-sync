@@ -49,7 +49,7 @@ export function getConfig(): Config {
     syncPath: createTempPath(),
     syncRepository: core.getInput("sync-repository", { required: true }),
     syncTree:
-      core.getInput("sync-branch", { required: false }) ??
+      core.getInput("sync-branch", { required: false }) ||
       core.getInput("sync-tree", { required: true }),
     templateVariables: {},
   };
