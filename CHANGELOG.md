@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.8.0](https://github.com/stordco/actions-sync/compare/v1.7.1...v1.8.0) (2023-08-29)
+
+
+### Features
+
+* allow syncing from git shas ([#18](https://github.com/stordco/actions-sync/issues/18)) ([0155004](https://github.com/stordco/actions-sync/commit/0155004b97e9afe299a1c44503895216e1b787fa))
+
 ## [1.7.1](https://github.com/stordco/actions-sync/compare/v1.7.0...v1.7.1) (2023-07-13)
 
 
