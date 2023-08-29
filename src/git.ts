@@ -20,7 +20,12 @@ export async function cloneRepository(config: Config): Promise<void> {
     },
   );
 
-  await exec(`git checkout --detach ${syncTree}`, [], {
+  await exec(`git fetch`, [], {
+    cwd: syncPath,
+    silent: !core.isDebug(),
+  });
+
+  await exec(`git checkout --progress --force ${syncTree}`, [], {
     cwd: syncPath,
     silent: !core.isDebug(),
   });
