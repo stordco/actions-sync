@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.9.0](https://github.com/stordco/actions-sync/compare/v1.8.3...v1.9.0) (2023-09-28)
+
+
+### Features
+
+* add handlebars-helpers for templating files ([#23](https://github.com/stordco/actions-sync/issues/23)) ([d339c18](https://github.com/stordco/actions-sync/commit/d339c188078949226d76c3851e4945b5beee658a))
+
 ## [1.8.3](https://github.com/stordco/actions-sync/compare/v1.8.2...v1.8.3) (2023-08-29)
 
 
