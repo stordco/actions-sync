@@ -27,9 +27,11 @@
     "@octokit/plugin-retry": "^3.0.9",
     "@octokit/plugin-throttling": "^3.7.0",
     "handlebars": "^4.7.7",
+    "handlebars-helpers": "^0.10.0",
     "uuid": "^9.0.0"
   },
   "devDependencies": {
+    "@types/handlebars-helpers": "^0.5.4",
     "@types/node": "^20.4.1",
     "@types/uuid": "^9.0.2",
     "@vercel/ncc": "^0.36.1",

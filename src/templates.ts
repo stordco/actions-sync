@@ -2,10 +2,13 @@ import * as core from "@actions/core";
 import * as glob from "@actions/glob";
 import { open, readFile, writeFile } from "fs/promises";
 import Handlebars from "handlebars";
+import HandlebarsHelpers from "handlebars-helpers";
 import { dirname, join, relative } from "path";
 import { mkdirP } from "@actions/io";
 
 import { Config } from "./config";
+
+HandlebarsHelpers({ handlebars: Handlebars });
 
 export async function templateFiles(config: Config): Promise<void> {
   const templateGlob = await glob.create(`${config.syncPath}/templates/*`, {
