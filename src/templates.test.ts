@@ -62,4 +62,19 @@ describe.concurrent("templates", () => {
       `{\n  "keyOne": true,\n  "keyTwo": "valueTwo",\n  "keyThree": "valueThree"\n}\n`,
     );
   });
+
+  it<LocalTestContext>("can use handlebars-helpers functions", async (ctx) => {
+    await templateFiles({
+      ...ctx.config,
+      templateVariables: {
+        KEY_ONE: "false",
+        KEY_TWO: "false",
+        KEY_THREE: "true",
+      },
+    });
+    const path = join(ctx.config.fullPath, "helpers.txt");
+    const data = await readFile(path, "utf8");
+
+    expect(data).toEqual("helpers: true\n");
+  });
 });

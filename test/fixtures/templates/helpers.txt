@@ -1,0 +1,1 @@
+{{#or KEY_ONE KEY_TWO KEY_THREE}}helpers: true{{else}}helpers:false{{/or}}
