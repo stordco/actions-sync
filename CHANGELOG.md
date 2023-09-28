@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.9.1](https://github.com/stordco/actions-sync/compare/v1.9.0...v1.9.1) (2023-09-28)
+
+
+### Bug Fixes
+
+* remove broken handlebar util package ([#25](https://github.com/stordco/actions-sync/issues/25)) ([76fee05](https://github.com/stordco/actions-sync/commit/76fee051cfb3641dd6747ebaad2fd080d15c81a5))
+
 ## [1.9.0](https://github.com/stordco/actions-sync/compare/v1.8.3...v1.9.0) (2023-09-28)
 
 
