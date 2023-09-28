@@ -81,5 +81,5 @@ outputs:
     description: The URL of the pull request that was created, if any
 
 runs:
-  using: node16
+  using: node20
   main: dist/index.js
