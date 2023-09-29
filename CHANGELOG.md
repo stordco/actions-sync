@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.9.2](https://github.com/stordco/actions-sync/compare/v1.9.1...v1.9.2) (2023-09-29)
+
+
+### Bug Fixes
+
+* update template or helper negation ([b959d8f](https://github.com/stordco/actions-sync/commit/b959d8f81e92bd4b3b9345832cc80a9009aa5333))
+
 ## [1.9.1](https://github.com/stordco/actions-sync/compare/v1.9.0...v1.9.1) (2023-09-28)
 
 
