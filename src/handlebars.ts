@@ -1,11 +1,11 @@
 import Handlebars from "handlebars";
 import isObject from "lodash/isObject";
-import { urlToHttpOptions } from "url";
 
 Handlebars.registerHelper("or", function (context, ...params) {
   const options = params[params.length - 1];
+  params.pop();
 
-  for (const value in params.splice(-1)) {
+  for (const value of params) {
     if (value) {
       return options.fn(context);
     }
