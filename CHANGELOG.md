@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.9.3](https://github.com/stordco/actions-sync/compare/v1.9.2...v1.9.3) (2023-10-18)
+
+
+### Bug Fixes
+
+* update handlebars or template to not ignore first param ([#30](https://github.com/stordco/actions-sync/issues/30)) ([91d84af](https://github.com/stordco/actions-sync/commit/91d84afb8975a0686142606df447f612fbf6554e))
+
 ## [1.9.2](https://github.com/stordco/actions-sync/compare/v1.9.1...v1.9.2) (2023-09-29)
 
 
