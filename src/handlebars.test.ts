@@ -28,4 +28,15 @@ describe.concurrent("handlebars", () => {
 
     expect(result).toEqual("helpers: false");
   });
+
+  it("can use an or helper without an else statement", async (ctx) => {
+    const template = Handlebars.compile(
+      "{{#or POSTGRES_VERSION KAFKA_USAGE}}    services:{{/or}}"
+    );
+    const result = template({
+      POSTGRES_VERSION: "14"
+    });
+
+    expect(result).toEqual("    services:");
+  });
 });
