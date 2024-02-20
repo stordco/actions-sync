@@ -7,11 +7,11 @@ Handlebars.registerHelper("or", function (...params) {
 
   for (const value of params) {
     if (value) {
-      return options.fn(this);
+      return options.fn(this as any);
     }
   }
 
-  return options.inverse(this);
+  return options.inverse(this as any);
 });
 
 export default Handlebars;
