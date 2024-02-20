@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.9.4](https://github.com/stordco/actions-sync/compare/v1.9.3...v1.9.4) (2024-02-20)
+
+
+### Bug Fixes
+
+* update handlebars or statement variable usage ([#34](https://github.com/stordco/actions-sync/issues/34)) ([1b0a000](https://github.com/stordco/actions-sync/commit/1b0a00002507c20ea9f9f1f6ca3b564e935d6acd))
+
 ## [1.9.3](https://github.com/stordco/actions-sync/compare/v1.9.2...v1.9.3) (2023-10-18)
 
 
