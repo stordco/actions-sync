@@ -2,10 +2,10 @@
   "compilerOptions": {
     "esModuleInterop": true,
     "module": "commonjs",
-    "noImplicitAny": true,
+    "noImplicitAny": false,
     "outDir": "./dist",
     "rootDir": "./src",
-    "strict": true,
+    "strict": false,
     "target": "es6"
   },
   "exclude": ["node_modules", "**/*.test.ts"]

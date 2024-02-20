@@ -39,4 +39,15 @@ describe.concurrent("handlebars", () => {
 
     expect(result).toEqual("    services:");
   });
+
+  it("allows statements in block", async (ctx) => {
+    const template = Handlebars.compile(
+      "{{#or POSTGRES_VERSION KAFKA_USAGE}}{{#if POSTGRES_VERSION}}POSTGRES{{/if}}{{#if KAFKA_USAGE}}KAFKA{{/if}}{{/or}}"
+    );
+    const result = template({
+      POSTGRES_VERSION: "14"
+    });
+
+    expect(result).toEqual("POSTGRES");
+  });
 });
