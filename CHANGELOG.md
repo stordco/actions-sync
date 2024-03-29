@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.10.0](https://github.com/stordco/actions-sync/compare/v1.9.4...v1.10.0) (2024-03-29)
+
+
+### Features
+
+* allow conditional rendering of files ([#36](https://github.com/stordco/actions-sync/issues/36)) ([4aa31cc](https://github.com/stordco/actions-sync/commit/4aa31ccdac06f06c3169a01ce985426a01c84963))
+
 ## [1.9.4](https://github.com/stordco/actions-sync/compare/v1.9.3...v1.9.4) (2024-02-20)
 
 
