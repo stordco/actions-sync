@@ -1,3 +1,4 @@
+import { existsSync } from "fs";
 import { readFile, mkdtemp, rm } from "fs/promises";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import { join, resolve } from "path";
@@ -61,5 +62,28 @@ describe.concurrent("templates", () => {
     expect(data).toEqual(
       `{\n  "keyOne": true,\n  "keyTwo": "valueTwo",\n  "keyThree": "valueThree"\n}\n`,
     );
+  });
+
+  it<LocalTestContext>("will render a regular markdown file", async (ctx) => {
+    await templateFiles(ctx.config);
+    const path = join(ctx.config.fullPath, "conditional.md");
+    const data = await readFile(path, "utf8");
+
+    expect(data).toEqual(
+      `# Conditional Markdown File
+
+This file will only be templated if the \`NO_MARKDOWN\` environment variable is not set. Otherwise, it will be rendered as a normal markdown file.
+`,
+    );
+  });
+
+  it<LocalTestContext>("will not template files if the denyRender helper is called", async (ctx) => {
+    await templateFiles({
+      ...ctx.config,
+      templateVariables: { NO_MARKDOWN: "true" },
+    });
+    const path = join(ctx.config.fullPath, "conditional.md");
+    const fileExists = existsSync(path);
+    expect(fileExists).toBe(false);
   });
 });

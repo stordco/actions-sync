@@ -1,5 +1,6 @@
 import Handlebars from "handlebars";
-import isObject from "lodash/isObject";
+
+export class DenyRenderError extends Error {}
 
 Handlebars.registerHelper("or", function (...params) {
   const options = params[params.length - 1];
@@ -12,6 +13,10 @@ Handlebars.registerHelper("or", function (...params) {
   }
 
   return options.inverse(this);
+});
+
+Handlebars.registerHelper("denyRender", function () {
+  throw new DenyRenderError();
 });
 
 export default Handlebars;

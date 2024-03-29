@@ -33,6 +33,18 @@ echo $MY_KEY
 
 All files in your `templates/` directory will be rendered with [Handlebars](https://handlebarsjs.com/) and placed in your repository. Handlebars will have access to any template key that was saved in the scripts step above.
 
+### Conditional Rendering
+
+In some instances you may want to allow only certain files to be rendered. This can be achieved by calling the `denyRender` handlebars function. This helper will prevent the file from being rendered and can be called from anywhere in the file (though we recommend up top.)
+
+```handlebars
+{{denyRender}}
+```
+
+```handlebars
+{{~#if DO_NOT_RENDER_THIS_FILE}}{{denyRender}}{{/if~}}
+```
+
 ## Alternatives
 
 There are many other git sync type actions currently on GitHub, however most of them only handle static files. This action was created where some files are dynamic and should be templated or scripted before synced.
