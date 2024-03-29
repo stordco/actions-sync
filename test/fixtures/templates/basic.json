@@ -1,0 +1,6 @@
+{
+  "keyOne": true,
+  {{#if KEY_TWO includeZero=true}}
+  "keyTwo": "valueTwo",
+{{/if}}  "keyThree": "valueThree"
+}
