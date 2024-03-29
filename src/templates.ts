@@ -5,7 +5,7 @@ import { dirname, join, relative } from "path";
 import { mkdirP } from "@actions/io";
 
 import { Config } from "./config";
-import Handlebars from "./handlebars";
+import Handlebars, { DenyRenderError } from "./handlebars";
 
 export async function templateFiles(config: Config): Promise<void> {
   const templateGlob = await glob.create(`${config.syncPath}/templates/*`, {
@@ -36,7 +36,11 @@ export async function templateFiles(config: Config): Promise<void> {
 
       core.debug("File written.");
     } catch (err) {
-      core.error(`Error templating ${relativePath}: ${err}`);
+      if (err instanceof DenyRenderError) {
+        core.debug(`denyRender was called for ${relativePath}`);
+      } else {
+        core.error(`Error templating ${relativePath}: ${err}`);
+      }
     }
   }
 }
