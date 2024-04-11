@@ -19,4 +19,8 @@ Handlebars.registerHelper("denyRender", function () {
   throw new DenyRenderError();
 });
 
+Handlebars.registerHelper("jsonParse", function (jsonString, _options) {
+  return JSON.parse(jsonString);
+});
+
 export default Handlebars;
