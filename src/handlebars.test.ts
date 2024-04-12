@@ -65,3 +65,17 @@ describe.concurrent("handlebars denyRender", () => {
     expect(() => template({})).not.toThrowError(DenyRenderError);
   });
 });
+
+describe.concurrent("handlebars jsonParse", () => {
+  it("allows loops from json variables", async (_ctx) => {
+    const template = Handlebars.compile(
+      "{{#each (jsonParse MY_JSON_ARRAY)}}{{prop}} and {{/each}}",
+    );
+
+    const result = template({
+      MY_JSON_ARRAY: '[{"prop":1},{"prop":2},{"prop":3}]',
+    });
+
+    expect(result).toEqual("1 and 2 and 3 and ");
+  });
+});

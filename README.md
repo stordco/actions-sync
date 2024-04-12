@@ -45,6 +45,20 @@ In some instances you may want to allow only certain files to be rendered. This 
 {{~#if DO_NOT_RENDER_THIS_FILE}}{{denyRender}}{{/if~}}
 ```
 
+### JSON Variables
+
+Normal variables are basic strings. In some cases you want to use JSON objects or arrays so you can loop over them. This can be achieved by using the `jsonParse` helper.
+
+```handlebars
+{{jsonParse MY_JSON_ARRAY}}
+```
+
+```handlebars
+{{#each (jsonParse MY_JSON_ARRAY)}}
+  {{this}}
+{{/each}}
+```
+
 ## Alternatives
 
 There are many other git sync type actions currently on GitHub, however most of them only handle static files. This action was created where some files are dynamic and should be templated or scripted before synced.
