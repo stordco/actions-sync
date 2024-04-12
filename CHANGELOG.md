@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.11.0](https://github.com/stordco/actions-sync/compare/v1.10.0...v1.11.0) (2024-04-12)
+
+
+### Features
+
+* allow json parsing in templates ([#39](https://github.com/stordco/actions-sync/issues/39)) ([6b2ea9b](https://github.com/stordco/actions-sync/commit/6b2ea9b88981399de6255c3f55c676b6ea4a1f02))
+
 ## [1.10.0](https://github.com/stordco/actions-sync/compare/v1.9.4...v1.10.0) (2024-03-29)
 
 
