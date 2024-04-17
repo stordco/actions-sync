@@ -1,9 +1,8 @@
 import { existsSync } from "fs";
-import { readFile, mkdtemp, rm } from "fs/promises";
+import { readFile, mkdtemp, rm, stat } from "fs/promises";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import { join, resolve } from "path";
 import { tmpdir } from "os";
-import { v4 as uuid } from "uuid";
 
 import { Config } from "./config";
 import { templateFiles } from "./templates";
@@ -85,5 +84,13 @@ This file will only be templated if the \`NO_MARKDOWN\` environment variable is 
     const path = join(ctx.config.fullPath, "conditional.md");
     const fileExists = existsSync(path);
     expect(fileExists).toBe(false);
+  });
+
+  it<LocalTestContext>("will use the same file permissions as the template", async (ctx) => {
+    await templateFiles(ctx.config);
+    const path = join(ctx.config.fullPath, "executable.sh");
+    const stats = await stat(path);
+
+    expect(stats.mode.toString(8)).toBe("100755");
   });
 });

@@ -1,6 +1,6 @@
 import * as core from "@actions/core";
 import * as glob from "@actions/glob";
-import { open, readFile, writeFile } from "fs/promises";
+import { chmod, open, readFile, stat, writeFile } from "fs/promises";
 import { dirname, join, relative } from "path";
 import { mkdirP } from "@actions/io";
 
@@ -20,6 +20,7 @@ export async function templateFiles(config: Config): Promise<void> {
     core.info(`Template ${relativePath}`);
 
     try {
+      const templateStats = await stat(templatePath);
       const templateData = await readFile(templatePath, "utf8");
       const templateHandlebar = Handlebars.compile(templateData);
       const fileData = templateHandlebar(config.templateVariables);
@@ -33,6 +34,10 @@ export async function templateFiles(config: Config): Promise<void> {
       const io = await open(writePath, "a");
       await io.close();
       await writeFile(writePath, fileData);
+      await chmod(
+        writePath,
+        "0" + (templateStats.mode & parseInt("777", 8)).toString(8),
+      );
 
       core.debug("File written.");
     } catch (err) {
