@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.12.0](https://github.com/stordco/actions-sync/compare/v1.11.0...v1.12.0) (2024-04-17)
+
+
+### Features
+
+* allow templates to be executable files ([#41](https://github.com/stordco/actions-sync/issues/41)) ([16ed4e7](https://github.com/stordco/actions-sync/commit/16ed4e75704efdf7d45d5991728bf2df5209175c))
+
 ## [1.11.0](https://github.com/stordco/actions-sync/compare/v1.10.0...v1.11.0) (2024-04-12)
 
 
