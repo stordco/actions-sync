@@ -14,7 +14,7 @@ jobs:
     steps:
       - id: release
         name: Release
-        uses: google-github-actions/release-please-action@v3
+        uses: googleapis/release-please-action@v4
         with:
           release-type: node
           package-name: "@stordco/actions-sync"
@@ -23,7 +23,7 @@ jobs:
 
       - if: steps.release.outputs.release_created
         name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           ref: ${{ steps.release.outputs.tag_name }}
           token: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
