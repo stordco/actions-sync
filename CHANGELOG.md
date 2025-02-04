@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.13.0](https://github.com/stordco/actions-sync/compare/v1.12.1...v1.13.0) (2025-02-04)
+
+
+### Features
+
+* update action versions ([#47](https://github.com/stordco/actions-sync/issues/47)) ([a2a0344](https://github.com/stordco/actions-sync/commit/a2a0344ab1208440025ac7d5d0574c05065e3eb1))
+
 ## [1.12.0](https://github.com/stordco/actions-sync/compare/v1.11.0...v1.12.0) (2024-04-17)
 
 
