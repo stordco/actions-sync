@@ -39,7 +39,7 @@ jobs:
       - if: steps.release.outputs.release_created
         id: cache
         name: Cache node_modules
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: node_modules
           key: ${{ runner.os }}-node-16-nodemodules-${{ hashFiles('package-lock.json') }}
